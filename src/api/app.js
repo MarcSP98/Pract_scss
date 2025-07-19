@@ -3,15 +3,22 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
+require('dotenv').config();
 
 // Puerto del servidor
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // URL de conexión a MongoDB Atlas, usando variable de entorno MONGODB_URI si está configurada
-const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://msp98msp:mspolot98@my-cluster.ozuqhwl.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=my-cluster";
+const MONGO_URI = process.env.MONGODB_URI;
 
 // Middleware CORS
 app.use(cors());
+
+// Verifica si la variable PORT está configurada
+if (!port) {
+    console.error('Error: La variable de entorno PORT no está configurada.');
+    process.exit(1); // Finaliza el proceso si no está configurada
+}
 
 // Verifica si la variable MONGODB_URI está configurada
 if (!MONGO_URI) {
@@ -23,7 +30,7 @@ if (!MONGO_URI) {
 mongoose.connect(MONGO_URI)
     .then(() => console.log('Conectado a MongoDB Atlas'))
     .catch(err => {
-        console.error('Error al conectar a MongoDB:', err);
+        console.error('Error al conectar a  MongoDB:', err);
         process.exit(1); // Finaliza el proceso si no se puede conectar
     });
 
@@ -31,11 +38,11 @@ mongoose.connect(MONGO_URI)
 app.use(express.json());
 
 // Servir archivos estáticos
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, '../../public')));
 
 // Rutas
-const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+const vehiclesRouter = require('./routes/vehicles');
+app.use('/vehicles', vehiclesRouter);
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
@@ -44,5 +51,5 @@ app.use((req, res, next) => {
 
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+    console.log(`Servidor escuchando en ${port}`);
 });
