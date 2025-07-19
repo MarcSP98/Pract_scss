@@ -117,6 +117,13 @@ npm run dev
 cd backend && npm run dev
 ```
 
+**Ejecutar servidor de demostración (sin MongoDB):**
+```bash
+npm run demo
+# o desde la carpeta backend:
+cd backend && npm run demo
+```
+
 **Compilar SASS (en modo watch):**
 ```bash
 npm run sass:watch
@@ -177,6 +184,7 @@ El proyecto utiliza la metodología **7-1 Pattern** para organizar el código SA
 ```bash
 npm start          # Iniciar backend en producción
 npm run dev        # Iniciar backend en desarrollo
+npm run demo       # Servidor de demostración sin MongoDB
 npm run install:all # Instalar todas las dependencias
 npm run sass:watch # Compilar SASS en modo watch
 npm run sass:build # Compilar SASS una vez
@@ -186,6 +194,7 @@ npm run sass:build # Compilar SASS una vez
 ```bash
 npm start          # Iniciar con Node.js
 npm run dev        # Iniciar con Nodemon (hot reload)
+npm run demo       # Servidor de demostración
 ```
 
 ### Frontend:
@@ -244,6 +253,7 @@ Para un entorno de desarrollo óptimo:
 ### Error de conexión a MongoDB
 - Verifica las credenciales en el archivo `.env`
 - Asegúrate de que tu IP esté en la whitelist de MongoDB Atlas
+- **Para desarrollo sin MongoDB**: Usa `npm run demo` para un servidor sin base de datos
 
 ### Error de compilación SASS
 - Verifica que las dependencias del frontend estén instaladas
@@ -252,3 +262,22 @@ Para un entorno de desarrollo óptimo:
 ### Puerto en uso
 - Cambia el puerto en el archivo `.env`
 - Verifica que no haya otras aplicaciones usando el puerto 3000
+
+## 🧪 Servidor de Demostración
+
+Para probar la funcionalidad sin configurar MongoDB:
+
+```bash
+# Iniciar servidor de demostración
+npm run demo
+
+# El servidor estará disponible en:
+# Frontend: http://localhost:3000/vehicles/
+# API de prueba: http://localhost:3000/vehicles/getVehicles
+```
+
+El servidor de demostración incluye:
+- ✅ Datos de prueba en memoria
+- ✅ Endpoints funcionales (GET/POST)
+- ✅ Servicio de archivos estáticos
+- ✅ Middlewares de logging y error handling
