@@ -1,21 +1,19 @@
 {
-  "name": "full_project",
+  "name": "vehicle-registration-monorepo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Vehicle registration system with separated frontend and backend",
+  "main": "backend/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/api/app"
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "sass:watch": "cd frontend && npm run sass",
+    "sass:build": "cd frontend && npm run sass:build"
   },
-  "keywords": [],
+  "keywords": ["vehicles", "registration", "monorepo"],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^5.3.3",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^4.21.2",
-    "mongoose": "^8.16.4",
-    "nodemon": "^3.1.9"
-  }
+  "license": "ISC"
 }

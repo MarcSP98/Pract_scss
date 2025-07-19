@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
+const logger = require('./middlewares/logger');
+const errorHandler = require('./middlewares/errorHandler');
 const app = express();
 require('dotenv').config();
 
@@ -13,6 +15,9 @@ const MONGO_URI = process.env.MONGODB_URI;
 
 // Middleware CORS
 app.use(cors());
+
+// Logger middleware
+app.use(logger);
 
 // Verifica si la variable PORT está configurada
 if (!port) {
@@ -37,8 +42,8 @@ mongoose.connect(MONGO_URI)
 // Middleware para manejar datos JSON
 app.use(express.json());
 
-// Servir archivos estáticos
-app.use('/public', express.static(path.join(__dirname, '../../public')));
+// Servir archivos estáticos desde frontend
+app.use('/public', express.static(path.join(__dirname, '../../frontend/public')));
 
 // Rutas
 const vehiclesRouter = require('./routes/vehicles');
@@ -48,6 +53,9 @@ app.use('/vehicles', vehiclesRouter);
 app.use((req, res, next) => {
     res.status(404).json({ message: 'Ruta no encontrada' });
 });
+
+// Middleware de manejo de errores (debe ir al final)
+app.use(errorHandler);
 
 // Iniciar el servidor
 app.listen(port, () => {

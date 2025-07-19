@@ -1,0 +1,25 @@
+{
+  "name": "vehicle-registration-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for vehicle registration system",
+  "main": "public/index.html",
+  "scripts": {
+    "sass": "sass src/sass/main.scss:public/css/styles.css --watch",
+    "sass:build": "sass src/sass/main.scss:public/css/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frontend",
+    "sass",
+    "javascript",
+    "html"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  },
+  "devDependencies": {
+    "sass": "^1.80.7"
+  }
+}
