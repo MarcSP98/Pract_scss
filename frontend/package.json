@@ -1,0 +1,13 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend for vehicle registration system",
+  "scripts": {
+    "sass:watch": "sass --watch src/sass:public/css",
+    "sass:build": "sass src/sass:public/css --style compressed"
+  },
+  "keywords": ["sass", "frontend"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
